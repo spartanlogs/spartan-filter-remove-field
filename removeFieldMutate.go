@@ -40,7 +40,9 @@ func newRemoveFieldFilter(options utils.InterfaceMap) (filters.Filter, error) {
 }
 
 func (f *RemoveFieldFilter) setConfig(options utils.InterfaceMap) error {
-	if err := config.VerifySettings(options, removeFieldConfigSchema); err != nil {
+	var err error
+	options, err = config.VerifySettings(options, removeFieldConfigSchema)
+	if err != nil {
 		return err
 	}
 
